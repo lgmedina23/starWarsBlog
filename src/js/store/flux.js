@@ -5,7 +5,11 @@ const getState = ({ getStore, getActions, setStore }) => {
       userDetail: {},
       userProperties: {},
       planets: [],
+      planetsDetail: {},
+      planetsProperties: {},
       vehicles: [],
+      vehiclesDetails: {},
+      vehiclesProperties: {},
     },
     actions: {
       // Use getActions to call a function within a fuction
@@ -34,7 +38,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           let character = data.result;
           setStore({ userDetail: character });
           let properties = data.result.properties;
-          setStore({ userProperties: properties});
+          setStore({ userProperties: properties });
         } else {
           console.log("Error: ", response.status, response.statusText);
         }
@@ -49,7 +53,22 @@ const getState = ({ getStore, getActions, setStore }) => {
           const data = await response.json();
           let character = data.results;
           setStore({ planets: character });
-        
+        } else {
+          console.log("Error: ", response.status, response.statusText);
+        }
+      },
+      getPlanetsDetails: async (id) => {
+        const url = "https://www.swapi.tech/api/planets/" + id;
+        const options = {
+          method: "GET",
+        };
+        const response = await fetch(url, options);
+        if (response.ok) {
+          const data = await response.json();
+          let character = data.result;
+          setStore({ planetsDetail: character });
+          let properties = data.result.properties;
+          setStore({ planetsProperties: properties });
         } else {
           console.log("Error: ", response.status, response.statusText);
         }
@@ -65,6 +84,22 @@ const getState = ({ getStore, getActions, setStore }) => {
           let character = data.results;
           console.log(character);
           setStore({ vehicles: character });
+        } else {
+          console.log("Error: ", response.status, response.statusText);
+        }
+      },
+      getVehiclesDetails: async (id) => {
+        const url = "https://www.swapi.tech/api/Vehicles/" + id;
+        const options = {
+          method: "GET",
+        };
+        const response = await fetch(url, options);
+        if (response.ok) {
+          const data = await response.json();
+          let character = data.result;
+          setStore({ vehiclesDetail: character });
+          let properties = data.result.properties;
+          setStore({ vehiclesProperties: properties });
         } else {
           console.log("Error: ", response.status, response.statusText);
         }
