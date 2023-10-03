@@ -21,7 +21,7 @@ export const PlanetsDetails = () => {
         </p>
         <p class="col-md-8 fs-4">climate: {store.planetsProperties.climate}</p>
         <p class="col-md-8 fs-4">
-          Passengers: {store.vehiclesProperties.passangers}
+          Rotation Period: {store.planetsProperties.rotation_period} hrs
         </p>
         <p class="col-md-8 fs-4">Terrain: {store.planetsProperties.terrain}</p>
         <p class="col-md-8 fs-4">Gravity: {store.planetsProperties.gravity}</p>
